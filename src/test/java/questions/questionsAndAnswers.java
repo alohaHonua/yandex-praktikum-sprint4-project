@@ -10,7 +10,6 @@ import ru.yandex.praktikum.BaseSteps;
 import ru.yandex.praktikum.MainPageYandexScooter;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-
 import static org.hamcrest.CoreMatchers.is;
 
 @RunWith(Parameterized.class)
@@ -41,7 +40,7 @@ public class questionsAndAnswers {
     private WebDriver driver;
 
     @Test
-    public void checkAnswersTest() throws InterruptedException {
+    public void checkAnswersTest() {
 
         ChromeOptions options = new ChromeOptions();
         driver = new ChromeDriver(options);
@@ -54,9 +53,7 @@ public class questionsAndAnswers {
         MainPageYandexScooter mainPage = new MainPageYandexScooter(driver);
 
         mainPage.waitForLoadLogo();
-        //Thread.sleep(2000);
         mainPage.clickQuestionByText(questionText);
-        //Thread.sleep(2000);
 
         String actualAnswer = mainPage.getAnswer(answerText);
 
