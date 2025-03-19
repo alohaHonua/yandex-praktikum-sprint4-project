@@ -21,7 +21,7 @@ public class MainPageYandexScooter {
     //private By question = By.xpath(".//div[text() = '"+ text + "']");
 
 //Список ответов
-    private By answer = By.xpath(".//div[@class = 'accordion__heading']/../..//div//p");
+    private By answersList = By.xpath(".//div[@class = 'accordion__heading']/../..//div//p");
 
 
     // Конструктор класса
@@ -41,8 +41,11 @@ public class MainPageYandexScooter {
     }
 
     // Метод, который проверяет текст ответа
-    public void checkAnswer(String text){
-        driver.findElement(answer).getText();
+    public String getAnswer(String text){
+        new WebDriverWait(driver, 5)
+                .until(ExpectedConditions.presenceOfAllElementsLocatedBy(answersList));
+        String answerText = driver.findElement(By.xpath(".//div[@class = 'accordion__heading']/../..//div//p[text()='"+ text +"']")).getText();
+        return answerText;
     }
 
 }
